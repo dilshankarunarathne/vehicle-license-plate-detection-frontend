@@ -59,7 +59,13 @@ function RegisterPlate() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Send the form to the API
+    axios.post('http://127.0.0.1:5000/add', form)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   return (
@@ -89,14 +95,14 @@ function RegisterPlate() {
 
 function ResultPage() {
   const location = useLocation();
-  const result = location.state.result;
+  const result = location.state?.result;
 
   return (
     <div>
-      <h2>Plate Number: {result.plate}</h2>
-      <h2>Owner Name: {result.results[0][1]}</h2>
-      <h2>Owner Phone: {result.results[0][2]}</h2>
-      <h2>Owner Address: {result.results[0][3]}</h2>
+      {result?.plate && <h2>Plate Number: {result.plate}</h2>}
+      {result?.results?.[0]?.[1] && <h2>Owner Name: {result.results[0][1]}</h2>}
+      {result?.results?.[0]?.[2] && <h2>Owner Phone: {result.results[0][2]}</h2>}
+      {result?.results?.[0]?.[3] && <h2>Owner Address: {result.results[0][3]}</h2>}
     </div>
   );
 }

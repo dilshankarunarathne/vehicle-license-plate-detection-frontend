@@ -1,10 +1,43 @@
 .App {
+  display: flex;
+  justify-content: center;
   text-align: center;
+  margin: 50px;
+}
+
+.App-split {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 0;
+  padding-bottom: 30px;
+}
+
+body {
+  background-color: #e5e7eb;
+}
+
+button {
+  margin-top: 20px;
+}
+
+label {
+  margin-top: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
 }
 
 @media (prefers-reduced-motion: no-preference) {

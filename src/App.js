@@ -52,6 +52,8 @@ function ScanImage() {
 
 function RegisterPlate() {
   const [form, setForm] = useState({});
+  const [message, setMessage] = useState(null);
+  const navigate = useNavigate();
 
   const handleFormChange = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
@@ -62,6 +64,10 @@ function RegisterPlate() {
     axios.post('http://127.0.0.1:5000/add', form)
       .then(response => {
         console.log(response);
+        setMessage("Sent successfully");
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
       })
       .catch(error => {
         console.log(error);
@@ -88,6 +94,8 @@ function RegisterPlate() {
         className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'/>
         
         <button type="submit" className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'>Submit</button>
+        
+        {message && <div>{message}</div>}
       </form>
     </div>
   );
